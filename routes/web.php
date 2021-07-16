@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,7 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/companies', [CompanyController::class, 'index'])->name('company.index');
+Route::middleware(['auth:sanctum', 'verified'])->get('/companies/{company:slug}', [CompanyController::class, 'show'])->name('company.show');
+
